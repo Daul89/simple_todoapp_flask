@@ -1,11 +1,9 @@
-from flask import Flask, render_template, jsonify
-from random import *
-from todo_registry import *
+# -*- coding: utf-8 -*-
 
+from todo_app import app, api
+from flask import render_template
 
-# @app.route('/')
-# def index():
-#     return render_template("index.html")
+from todo_app.apis import *
 
 
 # fixed route to catch the path.
@@ -15,4 +13,4 @@ def catch_all(path):
     return render_template("index.html")
 
 
-app.run(host='127.0.0.1', port=8000, debug=True)
+app.run(host='127.0.0.1', port=9200, debug=True)
