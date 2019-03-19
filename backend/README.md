@@ -11,13 +11,14 @@ Viewはindex.htmlをそのまま利用
 下記のAPI仕様書を読み、Backendコードを完成してほしい  
 言語はPython、FlameworkはFlaskとする
 
+
 ## API List ##
 
 
-`1. GET /tasks`  
-`2. POST /tasks`  
-`3. GET /task/<id>`  
-`4. DELETE /task/<id>`
+`1. GET /todos`  
+`2. POST /todos`  
+`3. GET /todos/<id>`  
+`4. DELETE /todos/<id>`
 
 
 
@@ -25,7 +26,7 @@ Viewはindex.htmlをそのまま利用
 
 **Definition**
 
-`GET /tasks`
+`GET /todos`
 
 **Response**
 
@@ -49,11 +50,11 @@ Viewはindex.htmlをそのまま利用
 
 **Definition**
 
-`POST /tasks`
+`POST /todos`
 
 **Arguments**
 
-- `"id":integer` identifier of todo item
+- `"id":integer` identifier of todo item. implicit.
 - `"item":string` context of todo item
 
 **Response**
@@ -71,7 +72,7 @@ Viewはindex.htmlをそのまま利用
 
 **Definition**
 
-`GET /task/<id>`
+`GET /todos/<id>`
 
 **Arguments**
 
@@ -94,7 +95,7 @@ Viewはindex.htmlをそのまま利用
 
 **Definition**
 
-`DELETE /task/<id>`
+`DELETE /todos/<id>`
 
 **Arguments**
 
