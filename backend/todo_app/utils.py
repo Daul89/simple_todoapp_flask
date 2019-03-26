@@ -9,4 +9,4 @@ class __EmptyDictError(Exception):
 
 def __is_empty_dict(dict):
     if not dict:
-        raise Empty_dict_error()
+        raise __EmptyDictError()

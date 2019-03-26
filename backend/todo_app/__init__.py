@@ -2,6 +2,7 @@
 
 from flask import Flask
 from flask_restful import Api
+from flask_cors import CORS
 
 
 # create instance
@@ -9,7 +10,12 @@ from flask_restful import Api
 app = Flask(__name__,
             static_folder = "../../dist/static",
             template_folder = "../../dist")
+
 api = Api(app)
+
+cors = CORS(app, resources={
+  r"/*": {"origin": "*"},
+})
 
 
 import todo_app.apis

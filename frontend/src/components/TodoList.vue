@@ -1,37 +1,41 @@
 <template>
   <div>
-  	<h1 class='ui centered header dividing'> Simple SPA Todo app with Flask & Vue.js </h1>
+    <!--<todo  v-for="todo in todos" v-bind:todo="todo"></todo>
+    <todo  v-on:delete-todo="deleteTodo" v-for="todo in todos" v-bind:todo="todo"></todo>
+    -->
+    <todo
+      v-on:delete-todo="deleteTodo"
+      v-for="todo in todos"
+      :todo.sync="todo"
+    ></todo>
 
-<!-- Looping and Rendering Data with v-for
-### Todo 1: adding buttons which is reacted with backend apis - create/delete/edit. <-- axion maybe
-    Todo 2: Display boolean:done on each todo card
-    Todo 3: Display the count of boolean:done on top of the application. <-- filter & length?
--->
-    <div class='ui centered card' v-for="todo in todos">
-      <div class='content'>
-        <div class='header'>
-          {{ todo.id }}
-        </div>
-        <div class='meta'>
-          {{ todo.title }}
-        </div>
-        <div class='extra content'>
-          <span class='right floated edit icon'>
-            <i class='edit icon'></i>
-          </span>
-        </div>
-      </div>
-      
-    </div>
+    <p>Completed tasks: {{todos.filter(todo => {return todo.is_done === true}).length}}</p>
+    <p>Pending tasks: {{todos.filter(todo => {return todo.is_done === false}).length}}</p>
   </div>
 </template>
 
 <script type = "text/javascript" >
+import Todo from './Todo'
+import api from '../api.js'
 
-//declare the property to retrieve the data v-binded
+// declare the property to retrieve the data v-binded
 export default {
-	props: ['todos'],
-};
+  props: ['todos'],
+  components: {
+    Todo
+  },
+  methods: {
+    deleteTodo (todo) {
+      api.deleteTodo(todo.id)
+        .then(() => {
+          const todoIndex = this.todos.indexOf(todo)
+          this.todos.splice(todoIndex, 1)
+        })
+    }
+  }
+}
+
 </script>
+
 <style>
 </style>
